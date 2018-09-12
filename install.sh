@@ -1,3 +1,4 @@
+#!/bin/sh -e
 cd
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 #install What I need 
