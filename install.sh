@@ -3,11 +3,11 @@ cd
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 #install What I need 
 sudo apt-get update
-sudo apt-get install curl git tmux vim 
-sudo apt-get install python-pip python-dev build-essential
-sudo apt-get install build-essential cmake
-sudo apt-get install build-essential cmake3
-sudo apt-get install python-dev python3-dev
+sudo apt-get install -y curl git tmux vim 
+sudo apt-get install -y python-pip python-dev build-essential
+sudo apt-get install -y build-essential cmake
+sudo apt-get install -y build-essential cmake3
+sudo apt-get install -y python-dev python3-dev
 
 #setbashrc
 cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
