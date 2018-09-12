@@ -16,18 +16,18 @@ cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
 curl https://sh.rustup.rs -sSf | sh
 
 #java
-sudo apt-get install default-jdk
-sudo apt-get install default-jre
+sudo apt-get -y install default-jdk
+sudo apt-get -y install default-jre
 
 #npm
-sudo apt-get install nodejs npm
+sudo apt-get -y install nodejs npm
 
 #tmux 
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf 
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local 
 
 #powerline-shell
-pip install powerline-shell
+pip install --user  powerline-shell
 ln -s -f ~/my-linux-config/config/.my-powerline-themes 
 if [! -d ~/.config ]; then
     mkdir ~/.config
