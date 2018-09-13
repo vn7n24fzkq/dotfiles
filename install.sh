@@ -32,7 +32,7 @@ ln -s -f ~/my-linux-config/config/.my-powerline-themes
 if [! -d ~/.config ]; then
     mkdir ~/.config
 fi
-ln -s -f ~/my-linux-config/config/.config/powerline-shell/ ~/.config
+ln -s -f ~/my-linux-config/config/.config/powerline-shell ~/.config
 
 #vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -45,5 +45,5 @@ cd ~/.vim/bundle/YouCompleteMe
 ln -s -f ~/my-linux-config/config/.gitconfig
 
 #LS_COLORS
-cp ~/my-linux-config/config/.dircolors 
+cp ~/my-linux-config/config/.dircolors .
 . $HOME/.bashrc
