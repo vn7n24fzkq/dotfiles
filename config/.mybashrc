@@ -1,3 +1,6 @@
+#Locale
+export LC_ALL=en_US.UTF-8
+
 #Tmux
 export NCURSES_NO_UTF8_ACS=1
 
