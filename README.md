@@ -6,5 +6,5 @@
 	```
 -	Step 2
 	```bash
-	curl https://raw.githubusercontent.com/vn7n24fzkq/my-linux-config/master/install.sh
+	curl https://raw.githubusercontent.com/vn7n24fzkq/my-linux-config/master/install.sh -sSf | sh
 	```
