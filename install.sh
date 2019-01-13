@@ -10,6 +10,7 @@ sudo apt-get -y install  curl git tmux vim
 sudo apt-get -y install  python-pip python-dev build-essential
 sudo apt-get -y install  build-essential cmake
 sudo apt-get -y install  python-dev python3-dev
+sudo apt-get -y install software-properties-common
 
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 
