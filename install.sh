@@ -1,6 +1,8 @@
 #!/bin/sh -e
 cd
 
+sudo apt-get install -y locales
+
 #language
 sudo locale-gen en_US.UTF-8
 
