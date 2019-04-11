@@ -24,9 +24,9 @@ cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
 
 #rust
 curl https://sh.rustup.rs -sSf | sh
-ex
 source $HOME/.cargo/env
 rustup component add rust-src # for YouCompleteMe rust
+rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 
 #java
 sudo apt-get -y install default-jdk
