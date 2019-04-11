@@ -24,6 +24,7 @@ cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
 
 #rust
 curl https://sh.rustup.rs -sSf | sh
+ex
 source $HOME/.cargo/env
 rustup component add rust-src # for YouCompleteMe rust
 
@@ -31,7 +32,8 @@ rustup component add rust-src # for YouCompleteMe rust
 sudo apt-get -y install default-jdk
 
 #npm
-sudo apt-get -y install nodejs npm
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs npm
 
 #tmux 
 cp ~/my-linux-config/config/.tmux/.tmux.conf .tmux.conf
@@ -51,6 +53,8 @@ cp ~/my-linux-config/config/.vimrc .vimrc
 vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py --all
+
+reset
 
 #git
 cp ~/my-linux-config/config/.gitconfig .gitconfig
