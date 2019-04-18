@@ -41,8 +41,7 @@ if has('nvim')
                 \ 'python': ['/usr/local/bin/pyls'],
                 \ }
 
-    noremap <silent> c-h :call LanguageClient_textDocument_hover()<CR>
-    noremap <silent> c-w :pclose<CR>
+    noremap <silent> <C-h> :call LanguageClient_textDocument_hover()<CR>
     noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
     noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
     noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
