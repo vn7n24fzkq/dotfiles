@@ -16,6 +16,7 @@ sudo apt-get -y install  python-dev python3-dev
 sudo apt-get -y install software-properties-common
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt -y install vim
+sudo apt -y install nvim
 
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 
