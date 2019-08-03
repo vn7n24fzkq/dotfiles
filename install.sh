@@ -36,8 +36,8 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs npm
 
 #tmux 
-cp ~/my-linux-config/config/.tmux/.tmux.conf .tmux.conf
-cp ~/my-linux-config/config/.tmux/.tmux.conf.local .tmux.conf.local
+ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf
+ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local
 
 #powerline-shell
 if [! -d ~/.config ]; then
@@ -45,11 +45,11 @@ if [! -d ~/.config ]; then
 fi
 mkdir -p ~/.config && cp -R ~/my-linux-config/config/.config/powerline-shell ~/.config/powerline-shell
 pip install --user  powerline-shell
-cp -R ~/my-linux-config/config/.my-powerline-themes  .my-powerline-themes  
+ln -s -f ~/my-linux-config/config/.my-powerline-themes  
 
 #vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cp ~/my-linux-config/config/.vimrc .vimrc 
+ln -s -f ~/my-linux-config/config/.vimrc 
 vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py --all
@@ -57,8 +57,8 @@ cd ~/.vim/bundle/YouCompleteMe
 reset
 
 #git
-cp ~/my-linux-config/config/.gitconfig .gitconfig
+ln -s -f ~/my-linux-config/config/.gitconfig
 
 #LS_COLORS
-cp ~/my-linux-config/config/.dircolors .dircolors
+ln -s -f ~/my-linux-config/config/.dircolors .dircolors
 . $HOME/.bashrc
