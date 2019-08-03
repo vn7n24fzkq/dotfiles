@@ -14,8 +14,6 @@ sudo apt-get -y install  python-pip python-dev build-essential
 sudo apt-get -y install  build-essential cmake
 sudo apt-get -y install  python-dev python3-dev
 sudo apt-get -y install software-properties-common
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt -y install vim
 sudo apt -y install nvim
 
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
@@ -31,7 +29,7 @@ rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 rustup component add rls rust-analysis rust-src
 
 #java
-sudo apt-get -y install default-jdk
+sudo apt-get install openjdk-11-jre openjdk-11-jdk
 
 #npm
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
