@@ -35,9 +35,6 @@ sudo apt-get install openjdk-11-jre openjdk-11-jdk
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs npm
 
-#gitconfig
-ln -s -f ~/my-linux-config/config/.gitconfig 
-
 #tmux 
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local
