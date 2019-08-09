@@ -7,14 +7,6 @@ export NCURSES_NO_UTF8_ACS=1
 #xterm
 export TERM="xterm-256color"
 
-#powerline
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 #LS-color
 eval $(dircolors -b $HOME/.dircolors)
 
