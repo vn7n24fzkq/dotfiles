@@ -39,13 +39,10 @@ sudo apt-get install -y nodejs npm
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local
 
-#powerline-shell
-if [! -d ~/.config ]; then
-    mkdir ~/.config
-fi
-mkdir -p ~/.config && cp -R ~/my-linux-config/config/.config/powerline-shell ~/.config/powerline-shell
-pip install --user  powerline-shell
-ln -s -f ~/my-linux-config/config/.my-powerline-themes  
+#zsh
+sudo apt-get -y install zsh
+sudo apt-get -y install powerline fonts-powerline
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
