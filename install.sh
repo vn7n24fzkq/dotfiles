@@ -60,5 +60,5 @@ reset
 ln -s -f ~/my-linux-config/config/.gitconfig
 
 #LS_COLORS
-ln -s -f ~/my-linux-config/config/.dircolors .dircolors
+ln -s -f ~/my-linux-config/config/.dircolors
 . $HOME/.bashrc
