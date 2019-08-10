@@ -45,7 +45,8 @@ sudo apt-get -y install powerline fonts-powerline
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+mkdir -p ~/.config/nvim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
 ln -s -f ~/my-linux-config/config/.vimrc 
 vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
