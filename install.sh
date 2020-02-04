@@ -14,7 +14,7 @@ sudo apt-get -y install  python-pip python-dev build-essential
 sudo apt-get -y install  build-essential cmake
 sudo apt-get -y install  python-dev python3-dev
 sudo apt-get -y install software-properties-common
-sudo apt -y install neovim 
+sudo apt-get -y install neovim 
 
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 
@@ -24,7 +24,6 @@ cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
 #rust
 curl https://sh.rustup.rs -sSf | sh
 source $HOME/.cargo/env
-rustup component add rust-src # for YouCompleteMe rust
 rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 rustup component add rls rust-analysis rust-src
 
@@ -44,12 +43,10 @@ sudo apt-get -y install zsh
 sudo apt-get -y install powerline fonts-powerline
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-#vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-ln -s -f ~/my-linux-config/config/.vimrc 
-vim +PluginInstall +qall
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --all
+#neovim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+ln -s -f ~/my-linux-config/config/nvim/init.vim 
+nvim +PluginInstall +qall
 
 reset
 
@@ -59,3 +56,4 @@ ln -s -f ~/my-linux-config/config/.gitconfig
 #LS_COLORS
 ln -s -f ~/my-linux-config/config/.dircolors
 . $HOME/.bashrc
+source ~/.zshrc

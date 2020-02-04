@@ -5,6 +5,8 @@
     editor = nvim
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+	lgbr = log origin --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d\n%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 [color]
   diff = auto
   status = auto
@@ -12,3 +14,5 @@
   interactive = auto
   ui = true
   pager = true
+[credential]
+	helper = store
