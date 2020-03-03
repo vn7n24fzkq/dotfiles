@@ -112,7 +112,7 @@ tmux_conf_theme_terminal_title='(ﾉ>ω<)ﾉ'
 tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
 tmux_conf_theme_window_status_bg='#303030'              # dark gray
 tmux_conf_theme_window_status_attr='none'
-tmux_conf_theme_window_status_format='#I #W'
+#tmux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#{circled_window_index} #W'
 #tmux_conf_theme_window_status_format='#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag,🔍,}'
 
@@ -147,12 +147,12 @@ tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
 # status left/right sections separators
-tmux_conf_theme_left_separator_main=''
-tmux_conf_theme_left_separator_sub='|'
+#tmux_conf_theme_left_separator_main=''
+#tmux_conf_theme_left_separator_sub='|'
 #tmux_conf_theme_right_separator_main=''
 #tmux_conf_theme_right_separator_sub='|'
-#tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
+tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
 tmux_conf_theme_right_separator_main='' #   Powerline symbols or the standalone
 tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 
@@ -180,9 +180,9 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{username}
 #     - #{username_ssh}
 
-tmux_conf_theme_status_left=' #S | (っ・ω・)っ |,| #{loadavg} |,'
+#tmux_conf_theme_status_left=' #S | (っ・ω・)っ |,| #{loadavg} |,'
 #tmux_conf_theme_status_left=' #S | #([ $((%S % 2)) = 0 ] && echo "(っ・ω・)っ" || echo "(」・ω・)」" ) |,| #{loadavg} |,'
-#tmux_conf_theme_status_left=' #S | #([ $((%S % 2)) = 0 ] && printf "(・ω・´)" || printf "(´・ω・)" ) |,| #{loadavg} |,'
+tmux_conf_theme_status_left=' #S | #([ $((#I % 2)) = 0 ] && printf "(・ω・´)" || printf "(´・ω・)" ) |,| #{loadavg} |,'
 tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} ,| CPU: #(echo $(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000)))ºC |,|#{?battery_status, #{battery_status},}#{?battery_bar, #{battery_vbar},}#{?battery_percentage, #{battery_percentage},} |, %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
