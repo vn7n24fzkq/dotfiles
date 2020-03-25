@@ -22,39 +22,76 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'roxma/nvim-completion-manager'
 set shortmess+=c
 "When the <Enter> key is pressed while the popup menu is visible, it only hides the menu. Use this mapping to hide the menu and also start a new line.
+let mapleader= "\<Space>"
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 "Use <TAB> to select the popup menu:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use K to show documentation in preview window.
+nnoremap <silent> <space>h :call CocAction('doHover')<CR>
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>t <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>r <Plug>(coc-references)
+
+xmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
+vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>ca  <Plug>(coc-codeaction)
+nmap <silent> <leader>cf  <Plug>(coc-fix-current)
+
+nmap <silent> <leader>F  :call CocAction('format')<CR>
+
+nmap <silent> <leader>R <Plug>(coc-rename)
+
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+nnoremap <silent> <leader>E  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>o  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>C  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>S  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>P  :<C-u>CocListResume<CR>
+nmap <silent> <leader>ek <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ej <Plug>(coc-diagnostic-next)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 " (Optional) Multi-entry selection UI.
-Plugin 'junegunn/fzf'
-set completeopt-=preview
-" let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
-Plugin 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
-let g:LanguageClient_serverCommands = {
-            \ 'kotlin': ["~/kotlin-language-server/kotlin-language-server/server/build/install/server/bin/kotlin-language-server"],
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-            \ 'dart':['dart_language_server'],
-            \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-            \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-            \ 'python': ['/usr/local/bin/pyls'],
-            \}
-noremap <silent> <space>lcs :LanguageClientStart<CR>
-noremap <silent> <space>ca :call LanguageClient_textDocument_codeAction()<CR>
-noremap <silent> <space>h :call LanguageClient_textDocument_hover()<CR>
-noremap <silent> <space>df :DartFmt<CR>
-noremap <silent> <space>f :call LanguageClient_textDocument_formatting()<CR>
-noremap <silent> <space>d :call LanguageClient_textDocument_definition()<CR>
-noremap <silent> <space>r :call LanguageClient_textDocument_rename()<CR>
-noremap <silent> <space>s :call LanguageClient_textDocument_documentSymbol()<CR>
-noremap <silent> <space>m :call LanguageClient_contextMenu()<CR>
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
 "dart
 Plugin 'dart-lang/dart-vim-plugin'
@@ -84,7 +121,7 @@ let g:racer_insert_paren = 1
 let g:racer_experimental_completer = 1
 let g:rustfmt_autosave = 1
 let g:rust_clip_command = 'xclip -selection clipboard'
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 "indent line
@@ -122,8 +159,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "eazy motion
 Plugin 'easymotion/vim-easymotion'
 " <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+map  <Leader>ef <Plug>(easymotion-bd-f)
+nmap <Leader>ef <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
@@ -161,6 +198,13 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" coc install extensions
+call coc#add_extension('coc-snippets',
+            \'coc-prettier',
+            \'coc-highlight',
+            \'coc-python',
+            \'coc-flutter')
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on

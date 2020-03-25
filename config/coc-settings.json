@@ -1,0 +1,30 @@
+{
+  "languageserver": {
+    "rust": {
+      "command": "rls",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
+    "dart": {
+      "command": "dart_language_server",
+      "args": [],
+      "filetypes": ["dart"],
+      "initializationOptions": {},
+      "settings": {
+        "dart": {
+          "validation": {},
+          "completion": {}
+        }
+      }
+    },
+    "kotlin": {
+      "command": "~/kotlin-language-server/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"],
+      "rootPatterns": [".kt", ".kts"],
+      "additionalSchemes": ["jar", "zipfile"]
+    }
+  },
+  "coc.preferences.formatOnTypeFiletypes": ["rust"],
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"]
+}
