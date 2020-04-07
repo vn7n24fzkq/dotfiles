@@ -19,7 +19,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'roxma/nvim-completion-manager'
+"Plugin 'roxma/nvim-completion-manager'
 set shortmess+=c
 "When the <Enter> key is pressed while the popup menu is visible, it only hides the menu. Use this mapping to hide the menu and also start a new line.
 let mapleader= "\<Space>"
@@ -144,7 +144,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
-nnoremap <silent> <space>b :Bookmark<CR>
 nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <C-c> :close<CR>
 nmap <leader>nf :NERDTreeFind<CR>
@@ -155,6 +154,8 @@ Plugin 'tpope/vim-fugitive'
 
 "ctrlP
 Plugin 'ctrlpvim/ctrlp.vim'
+nmap <Leader>p :CtrlP<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
 
 "eazy motion
 Plugin 'easymotion/vim-easymotion'
@@ -170,8 +171,8 @@ map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <Leader>ew <Plug>(easymotion-bd-w)
+nmap <Leader>ew <Plug>(easymotion-overwin-w)
 
 " tcomment 
 Plugin 'tomtom/tcomment_vim'
