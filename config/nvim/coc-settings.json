@@ -18,7 +18,7 @@
       }
     },
     "kotlin": {
-      "command": "~/kotlin-language-server/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+      "command": "~/develop-kit/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
       "filetypes": ["kotlin"],
       "rootPatterns": [".kt", ".kts"],
       "additionalSchemes": ["jar", "zipfile"]
