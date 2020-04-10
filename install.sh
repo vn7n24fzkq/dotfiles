@@ -14,6 +14,7 @@ sudo apt-get -y install  python-pip python-dev build-essential
 sudo apt-get -y install  build-essential cmake
 sudo apt-get -y install  python-dev python3-dev
 sudo apt-get -y install software-properties-common
+sudo apt-get -y install gawk net-tools coreutils
 sudo apt-get -y install neovim 
 sudo apt-get -y install ctags
 
