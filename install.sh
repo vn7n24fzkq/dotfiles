@@ -49,6 +49,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 #neovim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+cd ~/.config/nvim/
 ln -s -f ~/my-linux-config/config/nvim/init.vim 
 ln -s -f ~/my-linux-config/config/nvim/coc-settings.json
 nvim +PluginInstall +qall
