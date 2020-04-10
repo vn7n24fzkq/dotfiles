@@ -17,7 +17,7 @@ sudo apt-get -y install software-properties-common
 sudo apt-get -y install neovim 
 sudo apt-get -y install ctags
 
-
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 
 #setbashrc
