@@ -181,18 +181,18 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{username_ssh}
 
 #tmux_conf_theme_status_left=' #S | #([ $((%S % 2)) = 0 ] && echo "(っ・ω・)っ" || echo "(」・ω・)」" ) |,| #{loadavg} |,'
-tmux_conf_theme_status_left=' #S | #{loadavg} |,| #([ $((#I % 2)) = 0 ] && printf "(・ω・´)" || printf "(´・ω・)" )'
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} ,|#{network_bandwidth}|,| %b %d %R |,|#{username}#{root}|,| #{hostname} '
+tmux_conf_theme_status_left=' #S | #([ $((#I % 2)) = 0 ] && printf "(・ω・´)" || printf "(´・ω・)" )'
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} |,|#{network_bandwidth}|,|CPU: #(/usr/local/bin/tmux-cpu --format ":load")|,|MEM: #(/usr/local/bin/tmux-mem --format ":currentBytes/:totalBytes")|,|%b %d %R|,|#{username}#{root}|,|#{hostname} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#e4e4e4,#d26900,#bebebe,#e4e4e4,#bebebe'  
+tmux_conf_theme_status_left_fg='#e4e4e4,#e4e4e4,#bebebe,#e4e4e4,#bebebe'  
 tmux_conf_theme_status_left_bg='#586e75,#303030,#303030,#303030,#303030'  
 tmux_conf_theme_status_left_attr='bold,none,none,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#bebebe,#ff8040,#bebebe,#66b3ff,#bebebe,#b58900,#bebebe,#cb4b16,#b58900' # light gray, white, black
-tmux_conf_theme_status_right_bg='#303030,#0c3046,#0c3046,#303030,#303030,#303030,#303030,#303030,#0c3046' # dark gray, red, white
-tmux_conf_theme_status_right_attr='none,none,none,none,none,none,bold,bold'
+tmux_conf_theme_status_right_fg='#bebebe,#bebebe,#d33682,#bebebe,#2aa198,#bebebe,#6c71c4,#bebebe,#66b3ff,#bebebe,#b58900,#bebebe,#cb4b16,#b58900' # light gray, white, black
+tmux_conf_theme_status_right_bg='#303030,#303030,#0c3046,#0c3046,#0c3046,#0c3046,#0c3046,#0c3046,#303030,#303030,#303030,#303030,#303030,#0c3046' # dark gray, red, white
+tmux_conf_theme_status_right_attr='none,bold,none,bold,none,bold,none,bold,none,bold,none,bold,none,bold,none'
 
 # pairing indicator
 tmux_conf_theme_pairing='👓 '          # U+1F453
@@ -297,4 +297,4 @@ tmux_conf_copy_to_os_clipboard=false
 set -g status-position top
 
 # set display time
-set -g status-interval 10     # redraw status line every 10 seconds
+

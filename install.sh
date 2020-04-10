@@ -15,6 +15,8 @@ sudo apt-get -y install  build-essential cmake
 sudo apt-get -y install  python-dev python3-dev
 sudo apt-get -y install software-properties-common
 sudo apt-get -y install neovim 
+sudo apt-get -y install ctags
+
 
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
 
@@ -33,6 +35,8 @@ sudo apt-get install openjdk-11-jre openjdk-11-jdk
 #npm
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs npm
+sudo npm install -g tmux-mem
+sudo npm install -g tmux-cpu
 
 #tmux 
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf
