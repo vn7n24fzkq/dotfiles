@@ -31,11 +31,10 @@ rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
 rustup component add rls rust-analysis rust-src
 
 #java
-sudo apt-get install openjdk-11-jre openjdk-11-jdk
+sudo apt-get -y install openjdk-11-jre openjdk-11-jdk
 
 #npm
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs npm
+sudo apt-get -y  install nodejs npm
 sudo npm install -g tmux-mem
 sudo npm install -g tmux-cpu
 
