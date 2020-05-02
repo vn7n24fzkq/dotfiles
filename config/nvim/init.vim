@@ -27,15 +27,21 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 "Use <TAB> to select the popup menu:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use K to show documentation in preview window.
-nnoremap <silent> <space>h :call CocAction('doHover')<CR>
+nnoremap <silent> <leader>h :call Hover()<CR>
+function! Hover()
+    if coc#util#has_float()
+        :call coc#util#float_jump()
+    else
+        :call CocAction('doHover')
+    endif
+endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nmap <silent> <leader>d <Plug>(coc-definition)
-nmap <silent> <leader>t <Plug>(coc-type-definition)
-nmap <silent> <leader>i <Plug>(coc-implementation)
-nmap <silent> <leader>r <Plug>(coc-references)
+nnoremap <silent> <leader>d <Plug>(coc-definition)
+nnoremap <silent> <leader>t <Plug>(coc-type-definition)
+nnoremap <silent> <leader>i <Plug>(coc-implementation)
+nnoremap <silent> <leader>r <Plug>(coc-references)
 
 xmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
 vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
@@ -196,6 +202,17 @@ nnoremap <silent> <C-K><C-T> :TagbarToggle<CR>
 " airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+" git-messager
+Plugin 'rhysd/git-messenger.vim'
+
+"ack
+Plugin 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
+command Debug Ack! 'NOTE|INFO|IDEA'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
