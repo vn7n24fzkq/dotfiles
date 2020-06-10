@@ -145,16 +145,49 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
-"nerdtree
-Plugin 'scrooloose/nerdtree'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ryanoasis/vim-devicons'
-nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <C-c> :close<CR>
-nmap <leader>nf :NERDTreeFind<CR>
-let NERDTreeShowBookmarks=1
-let g:NERDTreeWinSize=30
+nmap <silent> <C-k><C-n> :CocCommand explorer<CR>
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\      'root-uri': '~/.config/nvim/init.vim',
+\   },
+\   'floating': {
+\      'position': 'floating',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\   },
+\   'floatingLeftside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 50,
+\   },
+\   'floatingRightside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 50,
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+
+" Use preset argument to open it
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+
+" List all presets
+nmap <space>el :CocList explPresets
+" "nerdtree
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plugin 'ryanoasis/vim-devicons'
+" nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
+" nnoremap <silent> <C-c> :close<CR>
+" nmap <leader>nf :NERDTreeFind<CR>
+" let NERDTreeShowBookmarks=1
+" let g:NERDTreeWinSize=30
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 
@@ -219,6 +252,7 @@ call vundle#end()            " required
 " coc install extensions
 call coc#add_extension('coc-snippets',
             \'coc-prettier',
+            \'coc-explorer',
             \'coc-highlight',
             \'coc-python',
             \'coc-flutter')
