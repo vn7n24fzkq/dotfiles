@@ -38,10 +38,10 @@ endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nnoremap <silent> <leader>d <Plug>(coc-definition)
-nnoremap <silent> <leader>t <Plug>(coc-type-definition)
-nnoremap <silent> <leader>i <Plug>(coc-implementation)
-nnoremap <silent> <leader>r <Plug>(coc-references)
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>t <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>r <Plug>(coc-references)
 
 xmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
 vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
