@@ -142,8 +142,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'Raimondi/delimitMate'
 
 "markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
 
 nmap <silent> <C-k><C-n> :CocCommand explorer<CR>
 let g:coc_explorer_global_presets = {
@@ -178,16 +178,16 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nmap <space>el :CocList explPresets
-" "nerdtree
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plugin 'Xuyuanp/nerdtree-git-plugin'
-" Plugin 'ryanoasis/vim-devicons'
-" nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
-" nnoremap <silent> <C-c> :close<CR>
-" nmap <leader>nf :NERDTreeFind<CR>
-" let NERDTreeShowBookmarks=1
-" let g:NERDTreeWinSize=30
+"nerdtree
+Plugin 'scrooloose/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <C-c> :close<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowBookmarks=1
+let g:NERDTreeWinSize=30
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 
@@ -252,7 +252,6 @@ call vundle#end()            " required
 " coc install extensions
 call coc#add_extension('coc-snippets',
             \'coc-prettier',
-            \'coc-explorer',
             \'coc-highlight',
             \'coc-python',
             \'coc-flutter')
@@ -272,4 +271,3 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 "for use type enter to select  
 inoremap <expr> <Enter> pumvisible() ? "<Esc>a" : "<Enter>" 
-
