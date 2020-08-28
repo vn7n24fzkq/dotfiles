@@ -188,7 +188,7 @@ nnoremap <silent> <C-c> :close<CR>
 nmap <leader>nf :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let g:NERDTreeWinSize=30
-" plugin on GitHub repo
+" git wrapper 
 Plugin 'tpope/vim-fugitive'
 
 "ctrlP
