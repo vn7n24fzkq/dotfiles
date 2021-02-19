@@ -303,4 +303,5 @@ tmux_conf_update_plugins_on_reload=true
 set -g @plugin  'xamut/tmux-network-bandwidth'
 set -g @plugin  'Determinant/tmux-colortag'
 TMUX_COLORTAG_TAG_ONLY=yes
+colortag_bg0=clour235
 set -g @continuum-restore 'on'
