@@ -29,11 +29,7 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <silent> <leader>h :call Hover()<CR>
 function! Hover()
-    if coc#util#has_float()
-        :call coc#util#float_jump()
-    else
         :call CocAction('doHover')
-    endif
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -55,8 +51,9 @@ nmap <silent> <leader>R <Plug>(coc-rename)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" conflict with <C-i>
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 nnoremap <silent> <leader>E  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>o  :<C-u>CocList extensions<cr>
 nnoremap <silent> <leader>C  :<C-u>CocList commands<cr>
@@ -178,16 +175,18 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nmap <space>el :CocList explPresets
-"nerdtree
-Plugin 'scrooloose/nerdtree'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+" explorer
 Plugin 'ryanoasis/vim-devicons'
-nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <C-c> :close<CR>
-nmap <leader>nf :NERDTreeFind<CR>
-let NERDTreeShowBookmarks=1
-let g:NERDTreeWinSize=30
+
+"nerdtree
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
+" nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
+" nnoremap <silent> <C-c> :close<CR>
+" nmap <leader>nf :NERDTreeFind<CR>
+" let NERDTreeShowBookmarks=1
+" let g:NERDTreeWinSize=30
 " git wrapper 
 Plugin 'tpope/vim-fugitive'
 
@@ -230,7 +229,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'airblade/vim-gitgutter'
 " tagbar
 Plugin 'majutsushi/tagbar'
-Plugin 'ludovicchabant/vim-gutentags' 
+" Plugin 'ludovicchabant/vim-gutentags' 
 nnoremap <silent> <C-K><C-T> :TagbarToggle<CR>
 "lightline 
 let g:lightline = {
@@ -262,7 +261,9 @@ command Debug Ack! 'NOTE|INFO|IDEA'
 call vundle#end()            " required
 " coc install extensions
 call coc#add_extension('coc-snippets',
+            \'coc-tabnine',
             \'coc-prettier',
+            \'coc-eslint',
             \'coc-highlight',
             \'coc-python',
             \'coc-flutter')

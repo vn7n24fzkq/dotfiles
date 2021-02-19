@@ -40,7 +40,8 @@ sudo npm install -g tmux-mem
 sudo npm install -g tmux-cpu
 
 #tmux 
-ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
 ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local
 
 #zsh
