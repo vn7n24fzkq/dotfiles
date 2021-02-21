@@ -261,6 +261,7 @@ command Debug Ack! 'NOTE|INFO|IDEA'
 call vundle#end()            " required
 " coc install extensions
 call coc#add_extension('coc-snippets',
+            \'coc-explorer',
             \'coc-tabnine',
             \'coc-prettier',
             \'coc-eslint',
