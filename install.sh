@@ -25,17 +25,9 @@ git clone https://github.com/vn7n24fzkq/my-linux-config.git
 #setbashrc
 cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
 
-#rust
-curl https://sh.rustup.rs -sSf | sh
-source $HOME/.cargo/env
-rustup component add rls --toolchain stable-x86_64-unknown-linux-gnu
-rustup component add rls rust-analysis rust-src
-
-#java
-sudo apt-get -y install openjdk-11-jre openjdk-11-jdk
-
 #npm
-sudo apt-get -y  install nodejs npm
+curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+sudo apt-get -y install nodejs npm
 sudo npm install -g tmux-mem
 sudo npm install -g tmux-cpu
 
