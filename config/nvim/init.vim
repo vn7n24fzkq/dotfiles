@@ -10,6 +10,10 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set title
+if has('termguicolors')
+    set termguicolors
+endif
+
 "set updatetime=400 " set update time
 "------------------------------------------------------------------------------------------
 
@@ -129,11 +133,11 @@ Plugin 'honza/vim-snippets'
 
 "indent line
 Plugin 'Yggdroot/indentLine'
-let g:indentLine_color_term = 239
+let g:indentLine_color_term = 256
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "theme
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'morhetz/gruvbox'
+" Plugin 'lifepillar/vim-solarized8'
+" Plugin 'morhetz/gruvbox'
 
 " delimitMate
 Plugin 'Raimondi/delimitMate'
@@ -228,26 +232,50 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
 " tagbar
-Plugin 'majutsushi/tagbar'
-" Plugin 'ludovicchabant/vim-gutentags' 
-nnoremap <silent> <C-K><C-T> :TagbarToggle<CR>
+Plugin 'liuchengxu/vista.vim'
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_fzf_preview =  ['right:50%']
+let g:vista_blink =  [1,100]
+let g:vista_echo_cursor_strategy ='floating_win'
+let g:vista_sidebar_width = 40
+let g:vista_default_executive = 'coc'
+let g:vista_executive_for = {
+  \ 'vim': 'ctag',
+  \ }
+
+nnoremap <silent> <C-K><C-T> :Vista!!<CR>
 "lightline 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'everforest',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'method': 'NearestMethodOrFunction'
       \ },
       \ }
 Plugin 'itchyny/lightline.vim'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 
 " git-messager
 Plugin 'rhysd/git-messenger.vim'
+
+" fzf
+Plugin 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plugin 'junegunn/fzf.vim' " needed for previews
+Plugin 'antoinemadec/coc-fzf'
 
 "ack
 Plugin 'mileszs/ack.vim'
@@ -266,7 +294,10 @@ call coc#add_extension('coc-snippets',
             \'coc-prettier',
             \'coc-eslint',
             \'coc-highlight',
-            \'coc-python',
+            \'coc-pyright',
+            \'coc-go',
+            \'coc-docker',
+            \'coc-tsserver',
             \'coc-flutter')
 
 filetype plugin indent on    " required
@@ -274,13 +305,6 @@ filetype plugin indent on    " required
 "filetype plugin on
 
 "hi Normal ctermbg=NONE        " Set no Alpha                                                                                                  
-colorscheme gruvbox 
-let g:airline_theme='gruvbox'
-let g:solarized_termcolors=256
-"let g:solarized_termtrans = 1   
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
+colorscheme everforest
 "for use type enter to select  
 inoremap <expr> <Enter> pumvisible() ? "<Esc>a" : "<Enter>" 

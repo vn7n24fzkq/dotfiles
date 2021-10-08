@@ -12,8 +12,10 @@
       "additionalSchemes": ["jar", "zipfile"]
     }
   },
+  "python.formatting.autopep8Path": "~/.local/bin/autopep8",
+  "python.analysis.diagnosticMode": "workspace",
   "coc.preferences.formatOnTypeFiletypes": ["rust"],
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
+  "coc.preferences.formatOnSaveFiletypes": [],
   "explorer.icon.enableNerdfont": true
 }
