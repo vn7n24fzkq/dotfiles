@@ -8,19 +8,24 @@ sudo locale-gen en_US.UTF-8
 
 #install What I need 
 sudo apt install man
-sudo apt-get update
-sudo apt-get -y install  curl git tmux
-sudo apt-get -y install  python-pip python-dev build-essential
-sudo apt-get -y install  build-essential cmake
-sudo apt-get -y install  python-dev python3-dev
-sudo apt-get -y install software-properties-common
-sudo apt-get -y install gawk net-tools coreutils
-sudo apt-get -y install neovim 
-sudo apt-get -y install ctags
-sudo apt-get -y install silversearcher-ag
+sudo apt update
+sudo apt install -y curl git tmux
+sudo apt install -y python-pip python-dev build-essential
+sudo apt install -y build-essential cmake
+sudo apt install -y python-dev python3-dev
+sudo apt install -y software-properties-common
+sudo apt install -y gawk net-tools coreutils
+sudo apt install -y neovim 
+sudo apt install -y ctags
+sudo apt install -y silversearcher-ag
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/vn7n24fzkq/my-linux-config.git
+
+#fzf installation
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 
 #setbashrc
 cat ~/my-linux-config/config/.mybashrc >> ~/.bashrc
@@ -33,27 +38,31 @@ sudo npm install -g tmux-cpu
 
 #tmux 
 git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-ln -s -f ~/my-linux-config/config/.tmux/.tmux.conf.local
+ln -sf .tmux/.tmux.conf
+ln -sf ~/my-linux-config/config/.tmux/.tmux.conf.local
 
 #zsh
 sudo apt-get -y install zsh
 sudo apt-get -y install powerline fonts-powerline
+#oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #neovim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
 cd ~/.config/nvim/
-ln -s -f ~/my-linux-config/config/nvim/init.vim 
-ln -s -f ~/my-linux-config/config/nvim/coc-settings.json
+ln -sf ~/my-linux-config/config/nvim/init.vim 
+ln -sf ~/my-linux-config/config/nvim/colors
+ln -sf ~/my-linux-config/config/nvim/autoload
+ln -sf ~/my-linux-config/config/nvim/doc
+ln -sf ~/my-linux-config/config/nvim/coc-settings.json
 nvim +PluginInstall +qall
 
 reset
 
 #git
-ln -s -f ~/my-linux-config/config/.gitconfig
+ln -sf ~/my-linux-config/config/.gitconfig
 
 #LS_COLORS
-ln -s -f ~/my-linux-config/config/.dircolors
-. $HOME/.bashrc
+ln -sf ~/my-linux-config/config/.dircolors
+source ~/.bashrc
 source ~/.zshrc
