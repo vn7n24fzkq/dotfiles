@@ -12,21 +12,38 @@
       "additionalSchemes": ["jar", "zipfile"]
     }
   },
-  "python.formatting.autopep8Path": "~/.local/bin/autopep8",
+  "python.formatting.autopep8Path": "/usr/local/bin/autopep8",
   "python.analysis.diagnosticMode": "workspace",
-  "coc.preferences.formatOnTypeFiletypes": ["rust"],
+  "coc.preferences.formatOnTypeFiletypes": ["rust", "go"],
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [],
+  "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
   "explorer.icon.enableNerdfont": true,
-  "explorer.root.strategies": [
-    "workspace",
-    "keep"
-  ],
+  "explorer.width": 30,
+  "explorer.root.strategies": ["workspace", "keep"],
   "cSpell.userWords": [
     "Favicon",
     "Nmap",
+    "VPSID",
     "Whois",
+    "asyncio",
+    "bitlaunchio",
+    "catppuccin",
+    "dialector",
+    "funcobj",
+    "gobitlaunch",
+    "gonic",
+    "gorm",
+    "grpc",
+    "joho",
+    "mygroup",
+    "nocompatible",
+    "plug",
+    "psycopg",
     "puml",
-    "pydantic"
-  ]
+    "pydantic",
+    "teamt",
+    "vpsclient"
+  ],
+  "coc.preferences.extensionUpdateCheck": "never"
 }

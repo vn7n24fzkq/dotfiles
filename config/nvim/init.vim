@@ -1,8 +1,9 @@
 set shell=/bin/sh
-"------------------------------------------------------------------------------------------
+"---------------------------
 " syntax on
 " filetype on                  " require
-set nocompatible              " be iMproved, requiredd
+filetype plugin indent on   " Allow auto-indenting depending on file type
+set nocompatible              " be iMproved, required
 set nu
 set relativenumber
 set t_Co=256
@@ -10,31 +11,171 @@ set background=dark " Setting dark mode
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set title
-set spelllang=en,cjk
-set spellsuggest=best,9
-set spell
+"set spelllang=en,cjk
+"set spellsuggest=best,9
+"set spell " enable spell check (may need to download language package)
+set clipboard=unnamedplus " Enables the clipboard between Vim/Neovim and other applications.
+set completeopt=noinsert,menuone,noselect " Modifies the auto-complete menu to behave more like an IDE.
+set cursorline " Highlights the current line in the editor
+set hidden " Hide unused buffers
+set autoindent " Indent a new line
+set inccommand=split " Show replacements in a split screen
+set mouse=a " Allow to use the mouse in the editor
+set number " Shows the line numbers
+set splitbelow splitright " Change the split screen behavior
+set title " Show file title
+set wildmenu " Show a more advance menu
+set cc=80 " Show at 80 column a border for good code style
+set ttyfast " Speed up scrolling in Vim
+set shortmess+=c " To hide "user defined completion" message
+let mapleader= "\<Space>"
 if has('termguicolors')
     set termguicolors
 endif
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+"===========================
+" catppuccin: color scheme
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+"===========================
+" tree-sitter: highlight syntax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"===========================
+"Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+"===========================
+" ctrlP
+Plug 'ctrlpvim/ctrlp.vim'
+nmap <Leader>p :CtrlP<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_by_filename = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|tmp$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
-"set updatetime=400 " set update time
-"------------------------------------------------------------------------------------------
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+"===========================
+" tcomment: comment tool 
+Plug 'numToStr/Comment.nvim'
+"===========================
+" multiple cursors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+"===========================
+" git wrapper 
+Plug 'tpope/vim-fugitive'
+"===========================
+" AI pair programmer 
+Plug 'github/copilot.vim'
+"===========================
+" gitgutter
+Plug 'airblade/vim-gitgutter'
+"===========================
+" tagbar
+Plug 'liuchengxu/vista.vim'
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_fzf_preview =  ['right:50%']
+let g:vista_blink =  [1,100]
+let g:vista_echo_cursor_strategy ='floating_win'
+let g:vista_sidebar_width = 40
+let g:vista_default_executive = 'ctags'
+let g:vista_executive_for = {
+  \ 'python': 'coc',
+  \ 'go': 'coc',
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'rust': 'coc',
+  \ }
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+nnoremap <silent> <C-K><C-T> :Vista!!<CR>
+"===========================
+" lightline: neovim status bar
+Plug 'itchyny/lightline.vim'
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+let g:lightline = {
+      \ 'colorscheme': 'catppuccin',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'method': 'NearestMethodOrFunction'
+      \ },
+      \ }
+"===========================
+" ack
+Plug 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
+command Debug Ack! 'NOTE|INFO|IDEA'
+"===========================
+" Surround.vim is all about "surroundings": parentheses, brackets, quotes,
+" XML tags, and more. The plugin provides mappings to easily delete, change
+" and add such surroundings in pairs.
+Plug 'tpope/vim-surround'
+"===========================
+Plug 'Yggdroot/indentLine'
+let g:indentLine_color_term = 256
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"===========================
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'antoinemadec/coc-fzf'
+"===========================
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'roxma/nvim-completion-manager'
-set shortmess+=c
-"When the <Enter> key is pressed while the popup menu is visible, it only hides the menu. Use this mapping to hide the menu and also start a new line.
-let mapleader= "\<Space>"
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+"---------------------------
+" setup catppuccin theme
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+colorscheme catppuccin
+
+lua << EOF
+require("catppuccin").setup()
+EOF
+"---------------------------
+" setup treesitter
+lua << EOF
+require("nvim-treesitter.configs").setup({
+    ensure_installed = { "rust", "go", "typescript" },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+    indent = {
+        enable = true,
+    }
+  }
+)
+EOF
+"---------------------------
+" used by coc-snippets
+Plug 'honza/vim-snippets'
+"---------------------------
+" setup comment nvim
+lua require('Comment').setup()
+"---------------------------
+" setup coc
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 "Use <TAB> to select the popup menu:
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-K>"
 nnoremap <silent> <leader>h :call Hover()<CR>
 function! Hover()
         :call CocAction('doHover')
@@ -50,7 +191,7 @@ nmap <silent> <leader>r <Plug>(coc-references)
 xmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
 vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>ca  <Plug>(coc-codeaction)
-nmap <silent> <leader>cf  <Plug>(coc-fix-current)
+nmap <silent> <leader>f  <Plug>(coc-fix-current)
 
 nmap <silent> <leader>F  :call CocAction('format')<CR>
 
@@ -60,31 +201,26 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 " conflict with <C-i>
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-nnoremap <silent> <leader>E  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <space>o  :<C-u>CocList extensions<cr>
-nnoremap <silent> <leader>C  :<C-u>CocList commands<cr>
-nnoremap <silent> <leader>S  :<C-u>CocList outline<cr>
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>E  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> <leader>o  :<C-u>CocFzfList extensions<cr>
+nnoremap <silent> <leader>C  :<C-u>CocFzfList commands<cr>
+nnoremap <silent> <leader>S  :<C-u>CocFzfList outline<cr>
+nnoremap <silent> <leader>s  :<C-u>CocFzfList -I symbols<cr>
 " Resume latest coc list.
-nnoremap <silent> <space>P  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>P  :<C-u>CocFzfListResume<CR>
 nmap <silent> <leader>ek <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>ej <Plug>(coc-diagnostic-next)
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 
-function! s:check_back_space() abort
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+inoremap <silent><expr> <s-Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
 
 let g:coc_snippet_next = '<tab>'
 
@@ -95,63 +231,6 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-" (Optional) Multi-entry selection UI.
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-"dart
-Plugin 'dart-lang/dart-vim-plugin'
-Plugin 'thosakwe/vim-flutter'
-"rust
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'timonv/vim-cargo'
-
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'rls',
-                \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-                \ 'whitelist': ['rust'],
-                \ })
-endif
-"kotlin
-autocmd BufReadPost *.kt setlocal filetype=kotlin
-Plugin 'udalov/kotlin-vim'
-
-"rust
-set hidden
-let g:racer_cmd = "/home/user/.cargo/bin/racer"
-let g:racer_insert_paren = 1
-let g:racer_experimental_completer = 1
-let g:rustfmt_autosave = 1
-let g:rust_clip_command = 'xclip -selection clipboard'
-" Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-"indent line
-Plugin 'Yggdroot/indentLine'
-let g:indentLine_color_term = 256
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-"theme
-" Plugin 'lifepillar/vim-solarized8'
-Plugin 'morhetz/gruvbox'
-Plugin 'jacoborus/tender.vim'
-Plugin 'lifepillar/vim-solarized8'
-
-" delimitMate
-Plugin 'Raimondi/delimitMate'
-
-"markdown
-" Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
-
 nmap <silent> <C-k><C-n> :CocCommand explorer<CR>
 let g:coc_explorer_global_presets = {
 \   '.vim': {
@@ -180,125 +259,11 @@ let g:coc_explorer_global_presets = {
 \ }
 
 " Use preset argument to open it
-nmap <space>ed :CocCommand explorer --preset .vim<CR>
-nmap <space>ef :CocCommand explorer --preset floating<CR>
+nmap <leader>ed :CocCommand explorer --preset .vim<CR>
+nmap <leader>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
-nmap <space>el :CocList explPresets
-" explorer
-Plugin 'ryanoasis/vim-devicons'
-
-"nerdtree
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plugin 'Xuyuanp/nerdtree-git-plugin'
-" nnoremap <silent> <C-k><C-n> :NERDTreeToggle<CR>
-" nnoremap <silent> <C-c> :close<CR>
-" nmap <leader>nf :NERDTreeFind<CR>
-" let NERDTreeShowBookmarks=1
-" let g:NERDTreeWinSize=30
-" git wrapper 
-Plugin 'tpope/vim-fugitive'
-
-"ctrlP
-Plugin 'ctrlpvim/ctrlp.vim'
-nmap <Leader>p :CtrlP<CR>
-nmap <Leader>b :CtrlPBuffer<CR>
-
-"eazy motion
-Plugin 'easymotion/vim-easymotion'
-" <Leader>f{char} to move to {char}
-map  <Leader>ef <Plug>(easymotion-bd-f)
-nmap <Leader>ef <Plug>(easymotion-overwin-f)
-
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <Leader>ew <Plug>(easymotion-bd-w)
-nmap <Leader>ew <Plug>(easymotion-overwin-w)
-
-" tcomment 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'terryma/vim-multiple-cursors'
-" surround
-Plugin 'tpope/vim-surround'
-
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" gitgutter
-Plugin 'airblade/vim-gitgutter'
-" tagbar
-Plugin 'liuchengxu/vista.vim'
-
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-" By default vista.vim never run if you don't call it explicitly.
-"
-" If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_fzf_preview =  ['right:50%']
-let g:vista_blink =  [1,100]
-let g:vista_echo_cursor_strategy ='floating_win'
-let g:vista_sidebar_width = 40
-let g:vista_default_executive = 'ctags'
-let g:vista_executive_for = {
-  \ 'python': 'coc',
-  \ 'go': 'coc',
-  \ 'javascript': 'coc',
-  \ 'typescript': 'coc',
-  \ 'rust': 'coc',
-  \ }
-
-nnoremap <silent> <C-K><C-T> :Vista!!<CR>
-"lightline 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'method': 'NearestMethodOrFunction'
-      \ },
-      \ }
-Plugin 'itchyny/lightline.vim'
-Plugin 'shinchu/lightline-gruvbox.vim'
-" git-messager
-Plugin 'rhysd/git-messenger.vim'
-
-" fzf
-Plugin 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plugin 'junegunn/fzf.vim' " needed for previews
-Plugin 'antoinemadec/coc-fzf'
-
-"ack
-Plugin 'mileszs/ack.vim'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
-command Debug Ack! 'NOTE|INFO|IDEA'
-
-"AI pair programmer 
-Plugin 'github/copilot.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+nmap <leader>el :CocFzfList explPresets
 " coc install extensions
 call coc#add_extension('coc-snippets',
             \'coc-explorer',
@@ -308,25 +273,9 @@ call coc#add_extension('coc-snippets',
             \'coc-highlight',
             \'coc-pyright',
             \'coc-go',
-            \'coc-docker',
             \'coc-tsserver',
-            \'coc-flutter',
             \'coc-spell-checker')
-
-" coc-spell-checker
-vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
-
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" Theme
-syntax enable
-"hi Normal ctermbg=NONE        " Set no Alpha                                                                                                  
-colorscheme gruvbox
-"for use type enter to select  
-inoremap <expr> <Enter> pumvisible() ? "<Esc>a" : "<Enter>" 
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>cc <plug>NERDCommenterComment
+nmap <leader>c<space> <plug>NERDCommenterToggle
+nmap <leader>cb <plug>NERDCommenterSexy

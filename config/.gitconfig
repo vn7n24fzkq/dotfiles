@@ -16,6 +16,7 @@
   helper = store
 [user]
 	name = Casper
+	email = vn7n24fzkq@gmail.com
 [difftool]
   prompt = true
 [diff]
