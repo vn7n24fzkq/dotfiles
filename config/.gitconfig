@@ -1,10 +1,8 @@
-[user]
-	name = vn7n24fzkq
-	email = vn7n24fzkq@gmail.com
 [core]
     editor = nvim
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	lga = log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	lgbr = log origin --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d\n%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 [color]
@@ -15,4 +13,30 @@
   ui = true
   pager = true
 [credential]
-	helper = store
+  helper = store
+[user]
+	name = Casper
+[difftool]
+  prompt = true
+[diff]
+  tool = nvimdiff
+  colorMoved = default
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[http]
+  sslVerify = false
+[mergetool]
+  keepBackup = false
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    line-numbers = true

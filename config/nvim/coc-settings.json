@@ -17,5 +17,16 @@
   "coc.preferences.formatOnTypeFiletypes": ["rust"],
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [],
-  "explorer.icon.enableNerdfont": true
+  "explorer.icon.enableNerdfont": true,
+  "explorer.root.strategies": [
+    "workspace",
+    "keep"
+  ],
+  "cSpell.userWords": [
+    "Favicon",
+    "Nmap",
+    "Whois",
+    "puml",
+    "pydantic"
+  ]
 }

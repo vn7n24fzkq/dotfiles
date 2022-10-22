@@ -1,3 +1,4 @@
+set shell=/bin/sh
 "------------------------------------------------------------------------------------------
 " syntax on
 " filetype on                  " require
@@ -10,6 +11,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set title
+set spelllang=en,cjk
+set spellsuggest=best,9
+set spell
 if has('termguicolors')
     set termguicolors
 endif
@@ -137,7 +141,9 @@ let g:indentLine_color_term = 256
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "theme
 " Plugin 'lifepillar/vim-solarized8'
-" Plugin 'morhetz/gruvbox'
+Plugin 'morhetz/gruvbox'
+Plugin 'jacoborus/tender.vim'
+Plugin 'lifepillar/vim-solarized8'
 
 " delimitMate
 Plugin 'Raimondi/delimitMate'
@@ -233,11 +239,10 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'airblade/vim-gitgutter'
 " tagbar
 Plugin 'liuchengxu/vista.vim'
+
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
@@ -249,18 +254,22 @@ let g:vista_fzf_preview =  ['right:50%']
 let g:vista_blink =  [1,100]
 let g:vista_echo_cursor_strategy ='floating_win'
 let g:vista_sidebar_width = 40
-let g:vista_default_executive = 'coc'
+let g:vista_default_executive = 'ctags'
 let g:vista_executive_for = {
-  \ 'vim': 'ctag',
+  \ 'python': 'coc',
+  \ 'go': 'coc',
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'rust': 'coc',
   \ }
 
 nnoremap <silent> <C-K><C-T> :Vista!!<CR>
 "lightline 
 let g:lightline = {
-      \ 'colorscheme': 'everforest',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
@@ -268,7 +277,7 @@ let g:lightline = {
       \ },
       \ }
 Plugin 'itchyny/lightline.vim'
-
+Plugin 'shinchu/lightline-gruvbox.vim'
 " git-messager
 Plugin 'rhysd/git-messenger.vim'
 
@@ -285,6 +294,9 @@ endif
 command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
 command Debug Ack! 'NOTE|INFO|IDEA'
 
+"AI pair programmer 
+Plugin 'github/copilot.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " coc install extensions
@@ -298,13 +310,23 @@ call coc#add_extension('coc-snippets',
             \'coc-go',
             \'coc-docker',
             \'coc-tsserver',
-            \'coc-flutter')
+            \'coc-flutter',
+            \'coc-spell-checker')
+
+" coc-spell-checker
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
 "hi Normal ctermbg=NONE        " Set no Alpha                                                                                                  
-colorscheme everforest
+colorscheme gruvbox
 "for use type enter to select  
 inoremap <expr> <Enter> pumvisible() ? "<Esc>a" : "<Enter>" 
