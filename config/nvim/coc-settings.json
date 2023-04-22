@@ -1,10 +1,5 @@
 {
   "languageserver": {
-    "rust": {
-      "command": "rls",
-      "filetypes": ["rust"],
-      "rootPatterns": ["Cargo.toml"]
-    },
     "kotlin": {
       "command": "~/develop-kit/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
       "filetypes": ["kotlin"],

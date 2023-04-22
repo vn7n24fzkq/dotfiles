@@ -266,6 +266,7 @@ nmap <leader>ef :CocCommand explorer --preset floating<CR>
 nmap <leader>el :CocFzfList explPresets
 " coc install extensions
 call coc#add_extension('coc-snippets',
+            \'coc-rust-analyzer',
             \'coc-explorer',
             \'coc-tabnine',
             \'coc-prettier',
