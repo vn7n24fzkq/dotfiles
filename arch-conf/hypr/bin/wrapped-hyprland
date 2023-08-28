@@ -1,0 +1,34 @@
+#!/bin/sh
+
+function set_wayland_env
+{
+ cd ${HOME}
+ # 设置语言环境为中文
+ # export LANG=zh_TW.UTF-8
+ # 解决QT程序缩放问题
+ export QT_AUTO_SCREEN_SCALE_FACTOR=1
+ # QT使用wayland和gtk
+ export QT_QPA_PLATFORM="wayland;xcb"
+ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+ # 使用qt5ct软件配置QT程序外观
+ export QT_QPA_PLATFORMTHEME=qt5ct
+
+ # 一些游戏使用wayland
+ export SDL_VIDEODRIVER=wayland
+ # 解决java程序启动黑屏错误
+ export _JAVA_AWT_WM_NONEREPARENTING=1
+ # GTK后端为 wayland和x11,优先wayland
+ export GDK_BACKEND="wayland,x11"
+
+}
+
+cd
+
+set_wayland_env
+
+export XCURSOR_SIZE=24
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+
+exec Hyprland
